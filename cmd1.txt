@@ -1,0 +1,17 @@
+?
+createFile f.txt pink red green blue
+printFile f.txt
+lastModified f.txt
+size f.txt
+rename f.txt g.txt
+mkdir dir
+createFile dir/f.txt bannana corn apple
+printFile dir/f.txt
+rename dir/f.txt dir/g.txt
+list  .
+list dir
+delete dir/g.txt
+delete dir
+delete g.txt
+list .
+badcommand
