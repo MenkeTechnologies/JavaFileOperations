@@ -115,11 +115,12 @@ public class FileOperations {
             PrintStream printer = new PrintStream(new FileOutputStream(path));
             for (int i = 0; i < commandArguments.size(); i++) {
                 printer.println(commandArguments.get(i));
+
+                System.out.println("Created file for: " + path.getAbsolutePath());
             }
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            System.out.println("Created file for: " + path.getAbsolutePath());
             printSeperator();
         }
 
@@ -217,7 +218,7 @@ public class FileOperations {
                     break;
                 case "quit":
                     System.out.println("Bye.");
-                    System.exit(0);
+                    return;
                 default:
                     System.out.println("Invalid command: " + line);
                     printSeperator();
@@ -240,12 +241,22 @@ public class FileOperations {
     void processCommandFile(String commandFile) {
 
         Scanner fileIn = null;
+        File commandFileToRead = new File(commandFile);
+        String marker = "=====================================================================";
 
         try {
             fileIn = new Scanner(new FileInputStream((commandFile)));
+            System.out.println(marker);
+            System.out.println("Starting command file = " + commandFileToRead.getAbsolutePath());
+            System.out.println(marker);
             while (fileIn.hasNextLine()) {
                 processCommandLine(fileIn.nextLine());
             }
+
+            System.out.println(marker);
+            System.out.println("Ending command file = " + commandFileToRead.getAbsolutePath());
+            System.out.println(marker);
+
         } catch (FileNotFoundException e) {
             System.out.println("Error. File not found." + e);
         } finally {
