@@ -116,11 +116,12 @@ public class FileOperations {
             for (int i = 0; i < commandArguments.size(); i++) {
                 printer.println(commandArguments.get(i));
 
-                System.out.println("Created file for: " + path.getAbsolutePath());
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            System.out.println("Created file for: " + path.getAbsolutePath());
+
             printSeperator();
         }
 
